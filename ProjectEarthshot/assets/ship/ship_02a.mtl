@@ -1,0 +1,13 @@
+# Blender MTL File: 'ship_02a.blend'
+# Material Count: 1
+
+newmtl Material.001
+Ns 258.917351
+Ka 0.581818 0.581818 0.581818
+Kd 0.800000 0.800000 0.800000
+Ks 0.409091 0.409091 0.409091
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd C:\\Users\\ryana\\Documents\\code\\project-moonshot-assets\\ship_02_texture_01.png
