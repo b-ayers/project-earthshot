@@ -69,5 +69,6 @@ public:
 	vector<Planet*> planets;
 	Planet* earth;
 	Ship* ship;
+	Kepler* satellite;
 		
 };

@@ -138,6 +138,7 @@ void ProjectMoonshotApp::constantUpdate(float deltaTime)
 	//calculate gravity, use J2 perturbation if toggled
 	ship->RK4(deltaTime, earth, gravJ2);
 	ship->update(deltaTime);
+	satellite->updateLoc(deltaTime);
 
 }
 
@@ -209,6 +210,9 @@ void ProjectMoonshotApp::draw()
 	//draw ship and earth
 	ship->draw(getElapsedSeconds(), frameAlpha, 1.0f);
 	earth->draw(sunBatch, cameraZoom, frameAlpha);
+	satellite->draw(mBatch, cameraZoom, frameAlpha);
+	satellite->drawEllipse();
+
 	//draw some lines aligned with ship heading and thrust vector, for debugging purposes
 	ship->drawThrustVector();
 	ship->drawHeading();
@@ -237,6 +241,14 @@ void ProjectMoonshotApp::createShip()
 	ship->velocity = Vector3(0, -0.07, 0);
 	ship->radius = 0.05f;
 	ship->mass = 0.00f;
+
+	//starlink-3132
+	satellite = new Kepler(6733.0 / 6378.0, 0.0014, 0.0, 1.87, 0.9271, 4.309, 0.05, 0.00);
+	satellite->loadAssets("planets/mars_texture.png");
+	satellite->setPathColor(Color(1.0f, .4f, .4f));
+	satellite->setEmissiveColor(vec4(.1f, .05f, .05f, 1.0f));
+
+
 
 }
 
