@@ -15,7 +15,7 @@ using namespace std;
 void ProjectMoonshotApp::setup()
 {
 	//initialize camera
-	mCam.lookAt(vec3(2, 0, 0), vec3(0),vec3(0,0,1));
+	mCam.lookAt(vec3(6, 0, 0), vec3(0),vec3(0,0,1));
 	mCamUi = CameraUi(&mCam);
 
 	try {
@@ -136,12 +136,7 @@ void ProjectMoonshotApp::constantUpdate(float deltaTime)
 {
 	earth->update();
 	//calculate gravity, use J2 perturbation if toggled
-	if (gravJ2) {
-		ship->RK4newJ2(deltaTime, earth);
-	}
-	else {
-		ship->RK4new(deltaTime, earth);
-	}
+	ship->RK4(deltaTime, earth, gravJ2);
 	ship->update(deltaTime);
 
 }
@@ -203,12 +198,7 @@ void ProjectMoonshotApp::draw()
 
 		Vector3 prevLoc = tShip->location;
 		//perform RK4 future time step to update temp ship's location/velocity
-		if (gravJ2) {
-			tShip->RK4newJ2(dt, earth);
-		}
-		else {
-			tShip->RK4new(dt, earth);
-		}
+		tShip->RK4(dt, earth, gravJ2);
 		//draw line from one time step position to next, for every other time step
 		if(dotting){
 			gl::drawLine(prevLoc.toVec3(), tShip->location.toVec3());
@@ -232,7 +222,7 @@ void ProjectMoonshotApp::createPlanets()
 	earth->location = Vector3(0, 0, 0);
 	earth->velocity = Vector3(0, 0, 0);
 	earth->mass = 1.0f;
-	earth->radius = 0.2f; //0.2f;
+	earth->radius = 1.0f; 
 	earth->loadAssets("planets/earth_texture.png");
 	earth->setEmissiveColor(vec4(0.0f, 0.0f, 0.12f, 1.0f));
 	
@@ -243,9 +233,9 @@ void ProjectMoonshotApp::createShip()
 {	
 	ship = new Ship();
 	ship->loadAssets(defaultGlProg, additiveGlProg);
-	ship->location = Vector3(-1.0, 0, 0);
-	ship->velocity = Vector3(0, -0.05, 0);
-	ship->radius = 0.02f;
+	ship->location = Vector3(-1.2, 0, 0);
+	ship->velocity = Vector3(0, -0.07, 0);
+	ship->radius = 0.05f;
 	ship->mass = 0.00f;
 
 }

@@ -1,8 +1,7 @@
 #include "Planet.h"
 
-Planet::Planet() 
+Planet::Planet() : Matter()
 {
-	Matter();
 	axisRotationRate = 0.2f;
 	rotationAxis = vec3(0, 1, 0);
 	emissiveColor = vec4(0, 0, 0, 0);

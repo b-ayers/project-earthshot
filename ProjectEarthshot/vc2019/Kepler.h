@@ -19,8 +19,6 @@ public:
 	void updateLoc(float dt);
 	Kepler();
 	Kepler(float a, float e, float theta, float w, float size, float m);
-	static void Kepler::heun(float dt, std::vector<Kepler*> planets, Matter* s);
-	static Vector3 Kepler::adaptiveRK45(float dt, std::vector <Kepler*> planets, Matter* s, float tolerance);
 
 	void setPathColor(Color pathColor);
 
