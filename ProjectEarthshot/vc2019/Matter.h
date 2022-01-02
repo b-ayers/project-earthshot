@@ -34,7 +34,6 @@ public:
 	Vector3 getSep(Matter);
 	void updatePos(float dt);
 	float Matter::getSpeedSquared();
-	void Matter::RK4new(float dt, Matter* planet);
 	void Matter::RK4(float dt, Matter* planet, bool useJ2);
 	virtual Vector3 calculateGravity3D(Vector3 loc);
 	Vector3 calculateJ2Gravity(Vector3 loc);
