@@ -21,7 +21,8 @@ Vector3 Matter::getSep(Matter body) {
 void Matter::updatePos(float dt) {
 	float dx = this->velocity.x * dt;
 	float dy = this->velocity.y * dt;
-	this->location = this->location + Vector3(dx, dy, 0);
+	float dz = this->velocity.z * dt;
+	this->location = this->location + Vector3(dx, dy, dz);
 }
 
 float Matter::getSpeedSquared() {

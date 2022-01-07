@@ -30,12 +30,9 @@ Kepler::Kepler(float a, float e, float theta, float w, float inclination, float 
 }
 
 void Kepler::updateLoc(float dt) {
-	//float dtheta = dt* sqrt((1-e*e)*GM*a) / (r*r);
 	float dtheta = dt * sqrt((1 - e * e) * float(G_EARTH) * a) / (r * r);
-
 	theta = theta + dtheta;
 	r = a * (1 - e * e) / (1 + e * cos(theta+w));
-	//location = Vector3(r * cos(theta), r * sin(theta), 0);
 	location = coordTransform();
 
 }

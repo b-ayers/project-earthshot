@@ -130,23 +130,13 @@ void Ship::rotate(float deltaTime)
 {
 	headingRotation += rotationAmt * deltaTime;
 	polarRotation += polarAmt * deltaTime;
-	//keep polar coordinate within coordinate system range (origin at equator)
-	if (polarRotation >= M_PI/2.0) {
-		polarRotation = M_PI / 2.0;
-	}
-	else if (polarRotation <= -M_PI / 2.0){
-		polarRotation = -M_PI / 2.0;
-	}
 	//update the heading vector of the ship
 	headingVec = Vector3(cos(polarRotation)*cos(headingRotation), cos(polarRotation)*sin(headingRotation), sin(polarRotation));
 	
 }
 
 void Ship::thrust(float deltaTime) {
-	float dx = cos(polarRotation) * cos(headingRotation) * thrustAmt;
-	float dy = cos(polarRotation) * sin(headingRotation) * thrustAmt;
-	float dz = sin(polarRotation) * thrustAmt;
-	thrustVec = Vector3(dx, dy, dz);
+	thrustVec = headingVec * thrustAmt;
 	velocity = velocity + thrustVec * deltaTime;
 }
 
