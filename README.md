@@ -33,3 +33,8 @@ Not ideal; may try rotating relative to the spacecraft's local frame of referenc
 
 The time scale the simulation is being calculated on can be sped up or slowed down
 using 'a' and 'd'. 
+
+Note: This app makes use of Cinder, an open source C++ graphics library (https://github.com/cinder).
+To build this project using current linkage, you'll need to put cinder in a directory cpp_libs/Cinder
+where cpp_libs is in the same directory as project-earthshot. Do a Debug build of Cinder (rather than
+cinder's Debug_ANGLE). 
