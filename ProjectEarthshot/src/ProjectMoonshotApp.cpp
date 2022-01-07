@@ -211,6 +211,7 @@ void ProjectMoonshotApp::draw()
 	ship->draw(getElapsedSeconds(), frameAlpha, 1.0f);
 	earth->draw(sunBatch, cameraZoom, frameAlpha);
 	satellite->draw(mBatch, cameraZoom, frameAlpha);
+	//gl::drawCube(satellite->location.toVec3(), vec3(0.1,0.1,0.1));
 	satellite->drawEllipse();
 
 	//draw some lines aligned with ship heading and thrust vector, for debugging purposes
@@ -243,7 +244,7 @@ void ProjectMoonshotApp::createShip()
 	ship->mass = 0.00f;
 
 	//starlink-3132
-	satellite = new Kepler(6733.0 / 6378.0, 0.0014, 0.0, 1.87, 0.9271, 4.309, 0.05, 0.00);
+	satellite = new Kepler(6733.0 / 6378.0, 0.0014, 0.0, 1.87, 0.9271, 4.309, 0.02, 0.00);
 	satellite->loadAssets("planets/mars_texture.png");
 	satellite->setPathColor(Color(1.0f, .4f, .4f));
 	satellite->setEmissiveColor(vec4(.1f, .05f, .05f, 1.0f));
